@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Snippet Manager</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+      
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span class="icon-small">📝</span>
+                <h2>Snippets</h2>
+            </div>
+
+            <div class="section-title">Quick Filters</div>
+            <div class="filter-group" id="languageFilters"></div>
+
+            <div class="section-title">Topic</div>
+            <div class="filter-group" id="topicFilters"></div>
+
+            <div class="section-title">Difficulty</div>
+            <div class="filter-group" id="difficultyFilters"></div>
+
+            <div style="flex: 1;"></div>
+
+            <div class="section-title">Statistics</div>
+            <div class="stats-box">
+                <div class="stat-item">
+                    <span class="stat-label">Total Snippets</span>
+                    <span class="stat-value" id="statTotal">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Favorites</span>
+                    <span class="stat-value" id="statFavorites">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Languages</span>
+                    <span class="stat-value" id="statLanguages">0</span>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main">
+
+            <header class="header">
+                <div class="header-left">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" placeholder="Search snippets, tags, code...">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-secondary btn-small" id="exportBtn">⬇ Export Selected</button>
+                    <button class="btn btn-primary" id="addBtn">+ New Snippet</button>
+                </div>
+            </header>
+
+            <main class="content" id="content">
+                <div class="empty-state">
+                    <div class="empty-icon">📚</div>
+                    <h3>No snippets yet</h3>
+                    <p>Create your first snippet to get started!</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Add New Snippet</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-content">
+                <div class="form-group">
+                    <label class="form-label">Snippet Title</label>
+                    <input type="text" class="form-input" id="titleInput" placeholder="e.g., Binary Search Algorithm">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Language</label>
+                        <select class="form-select" id="languageSelect">
+                            <option value="">Select Language</option>
+                            <option value="Java">Java</option>
+                            <option value="Python">Python</option>
+                            <option value="Cpp">C++</option>
+                            <option value="Javascript">JavaScript</option>
+                            <option value="Csharp">C#</option>
+                            <option value="Go">Go</option>
+                            <option value="Rust">Rust</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Difficulty</label>
+                        <select class="form-select" id="difficultySelect">
+                            <option value="">Select Difficulty</option>
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Topic</label>
+                        <select class="form-select" id="topicSelect">
+                            <option value="">Select Topic</option>
+                            <option value="DSA">DSA</option>
+                            <option value="Web">Web</option>
+                            <option value="OOP">OOP</option>
+                            <option value="Database">Database</option>
+                            <option value="Algorithms">Algorithms</option>
+                            <option value="Patterns">Patterns</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tags (comma separated)</label>
+                        <div class="tag-input-container" id="tagContainer">
+                            <input type="text" class="tag-input" id="tagInput" placeholder="Add tags...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Code</label>
+                    <textarea class="form-textarea" id="codeInput" placeholder="Paste your code here..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="descriptionInput" placeholder="Add a brief description..."
+                        style="min-height: 60px;"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modalCancelBtn">Cancel</button>
+                <button class="btn btn-primary" id="modalSaveBtn">Save Snippet</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
